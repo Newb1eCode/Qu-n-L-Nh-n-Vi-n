@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: head}"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <div th:replace="~{/fragment/header :: header}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="~{/fragment/aside :: aside}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Quản lý user
+                <small>it all starts here</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Examples</a></li>
+                <li class="active">Blank page</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Quản lý Nhân viên</h3>
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                                <form method="get" th:border="1">
+                                    <input type="text" placeholder="tìm kiếm" name="name">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary" href="#">Import Nhan vien</a>
+                    <a class="btn btn-primary" href="#">Dowload temple</a>
+                    <a class="btn btn-primary" href="/xuong/nhanvien/add">Them Nhân viên</a>
+                    <a class="btn btn-primary" href="#">lịch sử</a>
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <thead>
+                            <th>STT</th>
+                            <th>Mã</th>
+                            <th>Họ và tên</th>
+                            <th>Email FPT</th>
+                            <th>Email FE</th>
+                            <th>Trạng thái</th>
+                            <th>Hàng động</th>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user, stt : ${staff}">
+                                <td th:text="${stt.index + 1}"></td>
+                                <td th:text="${user.staffCode}"></td>
+                                <td th:text="${user.name}"></td>
+                                <td th:text="${user.accountFpt}"></td>
+                                <td th:text="${user.accountFe}"></td>
+                                <td>
+                                    <span th:switch="${user.status}">
+                                        <span th:case="1">Hoạt động</span>
+                                        <span th:case="0">Ngưng hoạt động</span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" th:href="@{/xuong/nhanvien/trangthai/{id}(id = ${user.id})}" >
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                    <a class="btn btn-primary" th:href="@{/xuong/nhanvien/hoatdong/{id}(id = ${user.id})}" >
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{/fragment/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<div th:replace="~{/fragment/script :: script}"></div>
+</body>
+</html>
+
+

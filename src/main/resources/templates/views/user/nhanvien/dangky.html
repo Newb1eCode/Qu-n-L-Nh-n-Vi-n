@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: head}"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <div th:replace="~{/fragment/header :: header}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="~{/fragment/aside :: aside}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Quản lý user
+                <small>it all starts here</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Examples</a></li>
+                <li class="active">Blank page</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <form class="row g-3" th:action="@{/xuong/nhanvien/save}" th:object="${staff}" method="post">
+                        <div class="box-body">
+                            <div class="col-md-6">
+                                <label  class="form-label">Mã</label>
+                                <input type="text" class="form-control" th:field="*{staffCode}" >
+                                <span th:if="${#fields.hasErrors('staffCode')}" th:errors="*{staffCode}"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label  class="form-label">Ho va ten</label>
+                                <input type="text" class="form-control" th:field="*{name}" >
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label  class="form-label">Email FPT</label>
+                                <input type="email" class="form-control" th:field="*{accountFpt}" >
+                                <span th:if="${#fields.hasErrors('accountFpt')}" th:errors="*{accountFpt}"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label  class="form-label">Email FE</label>
+                                <input type="email" class="form-control" th:field="*{accountFe}" >
+                                <span th:if="${#fields.hasErrors('accountFe')}" th:errors="*{accountFe}"></span>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{/fragment/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<div th:replace="~{/fragment/script :: script}"></div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head :: head}"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <div th:replace="~{/fragment/header :: header}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="~{/fragment/aside :: aside}"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Bán hàng tại quầy
+                <small>it all starts here</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Examples</a></li>
+                <li class="active">Blank page</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Update</h3>
+                    </div>
+                    <form class="row g-3" th:action="@{/TTAP/User/update}" th:object="${user}" method="post">
+                        <div class="box-body">
+                            <input type="hidden" th:field="*{id}"/>
+                            <div class="col-md-6">
+                                <label  class="form-label">Mã</label>
+                                <input type="text" class="form-control" th:field="*{hoTen}" >
+                                <span th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label  class="form-label">Ho va ten</label>
+                                <input type="text" class="form-control" th:field="*{hoTen}" >
+                                <span th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label  class="form-label">Email FPT</label>
+                                <input type="email" class="form-control" th:field="*{email}" >
+                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label  class="form-label">Email FE</label>
+                                <input type="email" class="form-control" th:field="*{email}" >
+                                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Địa chỉ</h3>
+                    </div>
+
+                    <form class="modal-content" th:action="@{'/TTAP/User/' + ${user.id} + '/DiaChi'}" th:object="${diaChi}" method="post" >
+                        <div class="box-body">
+                            <input type="hidden" th:field="*{id}">
+                            <label><b>So nha</b></label>
+                            <input type="text" placeholder="7" th:field="*{soNha}" required>
+
+                            <label><b>Ten duong</b></label>
+                            <input type="text" placeholder="Lac Long Quan " th:field="*{tenDuong}" required>
+
+                            <label ><b>Ten quan. huyen</b></label>
+                            <input type="text" placeholder="Tay Ho" th:field="*{tenQuanhuyen}" required>
+
+                            <label><b>Ten thanh pho</b></label>
+                            <input type="text" placeholder="Ha Noi" th:field="*{tenThanhpho}"required>
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{/fragment/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<div th:replace="~{/fragment/script :: script}"></div>
+</body>
+</html>
+
+
